@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Getting Started Insructions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To get up and running you will need node/npm https://nodejs.org/en/download/
+Once you have node, you can cd into the main IVR_GUI folder and:
+npm i
+npm start
 
 ## Available Scripts
 

@@ -13,12 +13,13 @@ export interface ISidebarItemProps {
   type: string,
   ports: INode['ports'],
   properties?: any,
+  isDraggable: boolean
 }
 
-export const SidebarItem = ({ type, ports, properties }: ISidebarItemProps) => {
+export const SidebarItem = ({ type, ports, properties, isDraggable }: ISidebarItemProps) => {
   return (
     <Outer
-      draggable={true}
+      draggable={isDraggable}
       onDragStart={ (event) => {
         event.dataTransfer.setData('react-flow-chart', JSON.stringify({ type, ports, properties }))
       } }

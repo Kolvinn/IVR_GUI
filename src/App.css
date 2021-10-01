@@ -18,6 +18,15 @@
   flex-direction: row;
 }
 
+.flexbox-container-col{
+  display: flex;
+  flex-direction: column;
+}
+button {
+  height: 5%;
+  background-color: beige;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,14 +1,12 @@
 import { cloneDeep, mapValues } from 'lodash'
 import * as React from 'react'
 import styled from 'styled-components'
-import { FlowChart, INodeInnerDefaultProps } from '@mrblenny/react-flow-chart'
-import {actions,} from '@mrblenny/react-flow-chart'
+import { FlowChart, INodeInnerDefaultProps, IChart, LinkDefault, actions } from '@mrblenny/react-flow-chart'
 import { Page } from './components/Page'
 import { chartSimple } from './ExampleChartState'
 import {Sidebar} from './components/Sidebar'
 import './App.css';
 import { SidebarItem } from './components/SidebarItem'
-import { IChart } from './chart'
 
 const Outer = styled.div`
   padding: 30px;
@@ -31,20 +29,54 @@ const Message = styled.div`
   line-height: 1.4em;
 `
 
+// const Button = styled.div`
+//   padding: 10px 15px;
+//   background: cornflowerblue;
+//   color: white;
+//   border-radius: 3px;
+//   text-align: center;
+//   transition: 0.3s ease all;
+//   cursor: pointer;
+//   &:hover {
+//     box-shadow: 0 10px 20px rgba(0,0,0,.1);
+//   }
+//   &:active {
+//     background: #5682d2;
+//   }
+// `
+
 const Button = styled.div`
-  padding: 10px 15px;
-  background: cornflowerblue;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 5px;
+  height: 15px;
+  width: 15px;
+  transform: translate(50%, -50%);
+  background: red;
   color: white;
-  border-radius: 3px;
-  text-align: center;
+  border-radius: 50%;
   transition: 0.3s ease all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
   cursor: pointer;
   &:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,.1);
   }
-  &:active {
-    background: #5682d2;
-  }
+`
+
+const LabelContent = styled.div`
+  padding: 5px 10px;
+  background: cornflowerblue;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
 `
 /**
  * Create the custom component,
@@ -194,6 +226,30 @@ export class CustomNodeInnerDemo extends React.Component {
           callbacks={stateActions}
           Components={{
             NodeInner: NodeInnerCustom,
+            Link: (props) => {
+              const { startPos, endPos, onLinkClick, link } = props
+              const centerX = startPos.x + (endPos.x - startPos.x) / 2
+              const centerY = startPos.y + (endPos.y - startPos.y) / 2
+              return (
+                <>
+                  <LinkDefault {...props} />
+                  <Label style={{ left: centerX, top: centerY }}>
+                     { props.link.properties && props.link.properties.label && (
+                       <LabelContent>{props.link.properties && props.link.properties.label}</LabelContent>
+                     )}
+                    <Button
+                      onClick={(e) => {
+                        onLinkClick({ linkId: link.id })
+                        stateActions.onDeleteKey({})
+                        e.stopPropagation()
+                      }}
+                    >
+                      x
+                    </Button>
+                  </Label>
+                </>
+              )
+            },
           }}
         />
         <div className = "flexbox-container-col">

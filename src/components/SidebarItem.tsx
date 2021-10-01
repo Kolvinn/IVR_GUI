@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { INode } from '../chart'
+import { INode } from '@mrblenny/react-flow-chart'
 
 const Outer = styled.div`
   padding: 20px 30px;

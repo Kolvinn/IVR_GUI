@@ -1,4 +1,4 @@
-import { IChart } from './chart'
+import { IChart } from '@mrblenny/react-flow-chart'
 
 export const chartSimple: IChart = {
   offset: {

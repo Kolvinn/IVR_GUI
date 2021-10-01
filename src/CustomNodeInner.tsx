@@ -60,8 +60,7 @@ const NodeInnerCustom = ({ node, config }: INodeInnerDefaultProps) => {
   } else {
     return (
       <Outer>
-        <p>Add custom displays for each node.type</p>
-        <p>You may need to stop event propagation so your forms work.</p>
+        <p>Some Node Title</p>
         <br />
         <div className = "flexbox-container">
             <Label>Id:</Label>

@@ -197,10 +197,7 @@ export class CustomNodeInnerDemo extends React.Component {
           }}
         />
         <div className = "flexbox-container-col">
-        <button title = "Save Diagram" onClick={() => this.saveData("dfd")}/>
-             Save Data
-        <button/>
-                
+        <button onClick={() => this.saveData("dfd")} title = "Save Diagram" color="#841584">Save Data</button>
             <Sidebar>{/*
             { chart.selected.type
             ? <Message>
